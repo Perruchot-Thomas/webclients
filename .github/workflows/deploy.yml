@@ -19,10 +19,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             set -e
-            echo "======================================"
-            echo "Début du déploiement"
-            echo "======================================"
-            
+
             cd /var/www/webclients
             git pull origin main
             /home/etudiant/.bun/bin/bun install
@@ -30,8 +27,7 @@ jobs:
             
             sudo systemctl restart webclients
             sudo systemctl status webclients
+
+            sleep 5
+
             curl --fail http://localhost:3344/
-            
-            echo "======================================"
-            echo "Déploiement terminé"
-            echo "======================================"
